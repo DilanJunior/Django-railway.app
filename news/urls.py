@@ -1,12 +1,13 @@
 from django.urls import path
-from news.views import inicio_view, models_view
+from news.views import inicio_view, models_view, Contact_view
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
     path('', inicio_view, name='inicio_view'),
-    path("Models/", models_view, name="models_view")
+    path('contact/', Contact_view.as_view(), name='contact_view' ),
+    path("models/", models_view, name="models_view")
 ]
 
 if settings.DEBUG:

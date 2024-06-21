@@ -1,6 +1,7 @@
 from django.db import models
 
 class Informacion_model(models.Model):
+   
     
     campo1 = models.CharField(max_length=100)
     campo2 = models.TextField()

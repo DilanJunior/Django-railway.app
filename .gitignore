@@ -1,5 +1,7 @@
+*
 myenv
 venv
 __pycache__
 
-*
+news
+DStore
