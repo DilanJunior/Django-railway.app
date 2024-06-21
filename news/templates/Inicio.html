@@ -6,13 +6,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-
+    <!--  Icons CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 </head>
 
 <style>
+    .list-icons {
+        display: flex;
+        justify-content: start;
+        gap: 10px;
+        margin-top: 5px;
+
+    }
+
+    .list-icons i {
+        display: inline;
+        color: gray;
+        font-size: 26px;
+    }
+
+    /* .project::before {
+        content: '';
+        width: 300px;
+        height: 230px;
+        position: absolute;
+        bottom: 40px;
+        left: 15px;
+
+        box-shadow: 0 0 20px 10px rgba(255, 255, 255, 255);
+        filter: brightness(150%);
+        z-index: -1;
+
+    } */
+
+    .project {
+        background-color: aliceblue;
+        width: 600px;
+        height: 100%;
+        flex-wrap: wrap;
+
+
+    }
+
+
+    .project img {
+        cursor: pointer;
+        width: 100%;
+        height: 155px;
+        object-fit: cover;
+    }
+
+
+
+    @media (max-width: 768px) {
+        .project img {
+            width: 100%;
+            height: 150px;
+            /* Altura automática para mantener la proporción */
+        }
+
+        .project {
+            background-color: aliceblue;
+            width: 300px;
+            height: 100%;
+
+
+
+        }
+
+        .list-icons i {
+            font-size: 22px;
+        }
+    }
+
+
+
+
+
     body {
-        background-image: url(/static/images/fondo1.jpg);
-        color: antiquewhite;
+        /* background-image: url(/static/images/fondo1.jpg); */
+        background-color: #212529;
+        color: white;
         background-size: cover;
         background-position: center;
         height: 100vh;
@@ -25,14 +99,19 @@
         content: "";
 
         opacity: 0.5;
-        /* Ajusta la opacidad aquí */
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: -1;
-        /* Asegúrate de que la imagen esté detrás del contenido */
+    }
+
+    .separator {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+
     }
 </style>
 
@@ -40,24 +119,59 @@
 
     {% include "header.html" %}
 
-    <div class="container justify-content-center d-flex align-items-center  mt-3 ">
-        <div class="row  mt-3">
+  
+    <div class="container mt-3">
+        <h3>Projectos</h3>
+        <div class="container separator mt-3">
             {% for new in news %}
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <div class="card-body bg-dark text-white">
-                        <h5 class="card-title">{{ new.campo1 }}</h5>
-                        <p class="card-text">{{ new.campo2 }}</p>
+
+
+            <div class="card bg-dark flex-fill project h-100" style="border: none;">
+                <img src="{{ new.image.url }}" class="rounded card-img-top" alt="">
+
+                <div class="card-body text-white">
+                    <!-- <h4 class="card-title">{{ new.campo1 }}</h4>
+                    <p class="card-text opacity-75">{{ new.campo2|truncatewords:20 }}</p>
+ -->
+                    <div class="list-icons d-flex justify-content-center">
+                        <!-- HTML -->
+                        <i class="fab fa-html5 mx-2"></i>
+                        <!-- CSS -->
+                        <i class="fab fa-css3-alt mx-2"></i>
+                        <!-- JavaScript -->
+                        <i class="fab fa-js-square mx-2"></i>
+                        <!-- Python -->
+                        <i class="fab fa-python mx-2"></i>
                     </div>
                 </div>
+
+
             </div>
+
             {% endfor %}
         </div>
-    </div>
-    
 
 
-   <!--  <div class="container mt-5">
+
+        <hr>
+        <h4>Sobre mí</h4>
+        <p>Ciudadano costarricense apasionado por la cultura y la tecnología, y un joven entusiasta con un fuerte
+            deseo de ayudar a las personas brindándoles un servicio excelente. Comprometido con el aprendizaje
+            continuo y la innovación, siempre busca maneras de mejorar la calidad de vida de su comunidad.</p>
+
+
+        <h4>Tecnologías:</h4>
+
+        <br>
+
+
+        </div>
+
+
+
+
+
+        <!--  <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <form method="post" class=" text-light p-4">
@@ -68,6 +182,25 @@
             </div>
         </div>
     </div> -->
+
+
+        <footer class="bg-dark text-white py-4 w-100">
+            <div class="container text-center ">
+                <a href="https://facebook.com" class="text-white text-decoration-none mx-2">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com" class="text-white text-decoration-none mx-2">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://instagram.com" class="text-white text-decoration-none mx-2">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com" class="text-white text-decoration-none mx-2">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </footer>
+
 
 
 

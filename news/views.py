@@ -5,6 +5,9 @@ from django.core import serializers
 from django.apps import apps
 from reportlab.pdfgen import canvas
 from .models import Informacion_model
+from asgiref.sync import sync_to_async
+import time
+
 
 
 
@@ -24,37 +27,31 @@ def models_view(request):
 
     return JsonResponse({'models': all_models})
 
-
-
+import asyncio
 def inicio_view(request):
     
+    """ def func_async(mensagge):
+        return mensagge
+      
+    async_function = sync_to_async(func_async, thread_sensitive=True)
+    
+    async def main():
+        # Usa await para obtener el resultado de la función asíncrona
+        resultado = await async_function("Tecnologías:")
+        return resultado
+
+    resultado = asyncio.run(main()) """
+    
     news = Informacion_model.objects.all()
+ 
 
     if request.method == 'POST':
         form = Informacion_form(request.POST)
         if form.is_valid():
             campo1 = form.cleaned_data['campo1']
             campo2 = form.cleaned_data['campo2']
-            response = HttpResponse(content_type='application/pdf')
-            response['Content-Disposition'] = 'attachment; filename="informacion.pdf"'
             
-            # Crear un lienzo para el PDF usando ReportLab
-            p = canvas.Canvas(response)
-            
-            # Agregar texto al PDF
-            p.drawString(100, 800, f'Campo 1: {campo1}')
-            p.drawString(100, 780, f'Campo 2: {campo2}')
-            
-            # Finalizar la página del PDF
-            p.showPage()
-            
-            # Guardar y cerrar el documento PDF
-            p.save()
-            
-            # Devolver la respuesta HTTP con el PDF generado
-            return response
-    else:
-        form = Informacion_form()
+   
 
-    context = {'form':form, 'news': news}
-    return render(request, 'Inicio.html', context)
+    context = { 'news': news, }
+    return render(request, 'Inicio.html', context,  )
